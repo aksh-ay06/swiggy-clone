@@ -27,7 +27,7 @@ const Body = () => {
   async function getRestaurant(){
     const data  = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.4504122&lng=78.594297&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     setAllRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
@@ -55,6 +55,7 @@ const Body = () => {
       }} />
       <button 
       className="search-btn px-2 bg-purple-50 hover:bg-purple-200 rounded-sm"
+      disabled={SearchText.length<1}
       onClick={()=>{
         const data = filterData(SearchText,allrestaurants);
         setFilteredRestaurants(data);
