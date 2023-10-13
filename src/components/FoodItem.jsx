@@ -1,12 +1,22 @@
+import { useDispatch } from "react-redux";
+import { removeItem } from "./cartSlice";
 import { IMG_CDN_URL } from "./constant";
 
 const FoodItem = ({ name, description, cloudinaryImageId, price }) => {
+
+  const dispatch=useDispatch();
+
+  const remove = () => {
+    dispatch(removeItem());
+}
+
   return (
     <div className="w-56 p-2 m-2 shadow-lg bg-pink-50">
       <img src={IMG_CDN_URL + cloudinaryImageId} />
       <h2 className="font-bold text-xl">{name}</h2>
       <h3>{description}</h3>
       <h4>Rupees: {price / 100}</h4>
+      <button className="bg-green-100 p-2 m-5" onClick={()=>remove()}></button>
     </div>
   );
 };
