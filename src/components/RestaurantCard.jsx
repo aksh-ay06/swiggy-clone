@@ -15,10 +15,6 @@ const RestaurantCard = ({ name, cuisines, totalRatingsString, cloudinaryImageId 
       <h2 className="font-bold text-lg mt-2">{name}</h2>
       <h3 className="text-sm text-gray-700">{cuisines.join(", ")}</h3>
       <h4 className="text-sm text-gray-600">{totalRatingsString} stars</h4>
-      {/* Added conditional check in case user is undefined */}
-      {user?.name && (
-        <span className="font-bold text-sm text-purple-700 block mt-2">User: {user.name}</span>
-      )}
     </div>
   );
 };
