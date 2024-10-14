@@ -66,9 +66,9 @@ const Header = () => {
                     </li>
                 </ul>
             </div>
-            <span className="p-10 font-bold text-red-600 flex">
+            {/* <span className="p-10 font-bold text-red-600 flex">
                 {user ? `${user.name} - ${user.email}` : "Guest"}
-            </span>
+            </span> */}
             {
                 isLoggedIn ? 
                     <button onClick={handleLogout} className="p-2 bg-red-500 text-white rounded hover:bg-red-600">Logout</button> : 

@@ -44,4 +44,151 @@ html, body, #root {
     padding: 20px;
   }
   
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+  }
   
+  .header img {
+    height: 50px;
+  }
+  
+  .header nav ul {
+    display: flex;
+    gap: 20px;
+    list-style-type: none;
+  }
+  
+  .header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 5px 10px;
+  }
+  
+  .header nav ul li a:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+  }
+  
+  .login-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .search-input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .search-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .search-input::placeholder {
+    color: #888;
+  }
+  
+  .restaurant-card {
+    width: 250px;
+    margin: 15px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .restaurant-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .restaurant-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .restaurant-card h2 {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  .restaurant-card h3, .restaurant-card h4 {
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .restaurant-card .user-info {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #6f42c1;
+  }
+  
+  body {
+    background: linear-gradient(to bottom right, #e0f7fa, #e1bee7);
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  body {
+    background: linear-gradient(to bottom right, #e0f7fa, #e1bee7);
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .restaurant-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  @media (max-width: 768px) {
+    .restaurant-card {
+      width: 100%;
+    }
+  }
+    
