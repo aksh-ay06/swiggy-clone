@@ -6,6 +6,8 @@ import UserContext from './utils/UserContext';
 import { useState } from 'react';
 import { Provider } from 'react-redux';
 import store from './utils/store';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';  // Import toastify styles
 
 function App() {
   const [user, setUser] = useState({
@@ -22,6 +24,18 @@ function App() {
             <Outlet /> {/* This will render your page content */}
           </div>
           <Footer />
+          {/* Add ToastContainer here */}
+          <ToastContainer 
+            position="top-right"
+            autoClose={3000} 
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </div>
       </UserContext.Provider>
     </Provider>

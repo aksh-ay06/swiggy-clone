@@ -12,6 +12,16 @@ const RestaurantMenu = () => {
 
   const handleItems = (item) => {
     dispatch(addItem(item));
+
+    toast.success(`${item.card.info.name} has been added to the cart!`, {
+        position: "top-right",
+        autoClose: 2000, // Duration of the notification
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
   };
 
   // Extracting restaurant information from the JSON structure
