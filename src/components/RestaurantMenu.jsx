@@ -5,52 +5,76 @@ import useRestaurant from "../utils/useRestaurant";
 import { addItem } from "./cartSlice";
 import { useDispatch } from "react-redux";
 
-
 const RestaurantMenu = () => {
-    
-    const {restId} = useParams();
-    
-    const restaurant = useRestaurant(restId);
+  const { restId } = useParams();
+  const restaurant = useRestaurant(restId);
+  const dispatch = useDispatch();
 
-    const dispatch =useDispatch();
+  const handleItems = (item) => {
+    dispatch(addItem(item));
+  };
 
-    const handleItems = (item) =>{
-        dispatch(addItem(item))
-    };
-    
-    return (!restaurant)?(<Shimmer/>):(
-        <div className='flex gap-x-8'>
-            <div className="h-auto max-w-sm rounded-lg shadow-none transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-black/30">
-                <div className="max-w- rounded border bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800">
-                    <img src={IMG_CDN_URL+restaurant.data?.cards[0]?.card?.card?.info?.cloudinaryImageId} alt="image from the restaurant" />
-                </div>
-                <div className="menu">
-                    <h2>Name:{restaurant.data?.cards[0]?.card?.card?.info?.name}</h2>
-                    <h3>Area : {restaurant.data?.cards[0]?.card?.card?.info?.areaName}</h3>
-                    <h3>Average Rating : {restaurant.data?.cards[0]?.card?.card?.info?.avgRating} avg stars</h3>
-                    <h3>City:{restaurant.data?.cards[0]?.card?.card?.info?.city}</h3>
-                    <h3>Cusinies:{restaurant.data?.cards[0]?.card?.card?.info?.cusinies}</h3>
-                    <h3>Locality:{restaurant.data?.cards[0]?.card?.card?.info?.locality}</h3>
-                </div>
-            </div>
-            <div>
-                <div>
-                    {restaurant.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards?.map(
-                        (item)=> 
-                            <div key={item?.card?.info?.id} className="flex-column "> 
-                            <h3 >{item?.card?.info?.name} - {item?.card?.info?.price/100} <button className='p-2 bg-red-500' onClick={()=>handleItems(item)}>Add</button> </h3>
-                            <div className="flex-auto">
-                                <div className="flex-wrap">{item?.card?.info?.description}</div>
-                                <div><img className="h-auto w-36" src={IMG_CDN_URL+item?.card?.info?.imageId}></img></div>
-                            </div>
-                            </div>)
-                    }
-                </div>
-            </div>
+  // Extracting restaurant information from the JSON structure
+  const restaurantInfo = restaurant?.data?.cards?.[2]?.card?.card?.info;
+  const menuItems =
+    restaurant?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card?.itemCards || [];
+
+  return !restaurant ? (
+    <Shimmer />
+  ) : (
+    <div className="flex gap-x-8">
+      {/* Restaurant Details */}
+      <div className="h-auto max-w-sm rounded-lg shadow-lg bg-white p-4">
+        <img
+          src={IMG_CDN_URL + restaurantInfo?.cloudinaryImageId}
+          alt={restaurantInfo?.name || "Restaurant Image"}
+          className="w-full h-56 object-cover rounded-md"
+        />
+        <div className="mt-4">
+          <h2 className="text-xl font-bold">{restaurantInfo?.name || "Restaurant Name"}</h2>
+          <h3>Area: {restaurantInfo?.areaName || "Not available"}</h3>
+          <h3>Rating: {restaurantInfo?.avgRating ? `${restaurantInfo.avgRating} stars` : "Not available"}</h3>
+          <h3>City: {restaurantInfo?.city || "Not available"}</h3>
+          <h3>Cuisines: {restaurantInfo?.cuisines?.join(", ") || "Not available"}</h3>
+          <h3>Locality: {restaurantInfo?.locality || "Not available"}</h3>
         </div>
-    )
+      </div>
 
-
-}
+      {/* Menu Items */}
+      <div>
+        <h2 className="text-xl font-bold mb-4">Menu Items</h2>
+        <div className="space-y-4">
+          {menuItems.length > 0 ? (
+            menuItems.map((item) => (
+              <div key={item?.card?.info?.id} className="flex gap-4 p-4 border-b">
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold">
+                    {item?.card?.info?.name} - ₹{item?.card?.info?.price / 100 || "Price not available"}
+                  </h3>
+                  <p className="text-sm text-gray-600">{item?.card?.info?.description || "No description available"}</p>
+                  <button
+                    className="mt-2 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                    onClick={() => handleItems(item)}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+                {item?.card?.info?.imageId && (
+                  <img
+                    className="h-24 w-24 object-cover rounded-md"
+                    src={IMG_CDN_URL + item?.card?.info?.imageId}
+                    alt={item?.card?.info?.name || "Menu item image"}
+                  />
+                )}
+              </div>
+            ))
+          ) : (
+            <p className="text-center">No items available</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default RestaurantMenu;

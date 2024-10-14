@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add this to your styles.css or global.css file */
+.shimmer-card {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Ensure body and root container take the full height of the viewport */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* App container takes full height of the viewport */
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+  }
+  
+  /* Content grows to fill the space between the header and footer */
+  .content-container {
+    flex-grow: 1; /* Takes up remaining space */
+  }
+  
+  /* Optional: Footer styling */
+  footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  
