@@ -60,18 +60,6 @@ const Body = () => {
         const data = filterData(SearchText,allrestaurants);
         setFilteredRestaurants(data);
       }}>Search</button>
-      <input value={user.name} onChange={
-        e=> setUser({
-          ...user,
-          name:e.target.value,
-        })
-      }></input>
-      <input value={user.email} onChange={
-        e=> setUser({
-          ...user,
-          email:e.target.value,
-        })
-      }></input>
     </div>
     <div className="flex flex-wrap bg-blue-50">
       {filteredRestaurants.map((restaurant)=>{
